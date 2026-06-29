@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANOR MARKET — Mukammal Katalog</title>
+    <style>
+        /* --- BRAND RESPONSIVE DIZAYN --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Yuqori panel */
+        .top-bar {
+            background-color: #e2e8f0;
+            font-size: 13px;
+            padding: 8px 0;
+            color: #475569;
+        }
+        .top-bar-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-bar .left-links {
+            color: #475569;
+        }
+        
+        /* TIL TUGMALARI USLUBI */
+        .lang-switcher {
+            display: flex;
+            gap: 5px;
+        }
+        .lang-btn {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .lang-btn.active {
+            background-color: #b30000;
+            color: white;
+            border-color: #b30000;
+        }
+
+        /* Asosiy Header */
+        .main-header {
+            background-color: #ffffff;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* PROFESSIONAL ANOR LOGOTIPI */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .pomegranate-icon {
+            position: relative;
+            width: 38px;
+            height: 38px;
+            background: radial-gradient(circle at 35% 35%, #ff4d4d, #b30000);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: inset -3px -3px 8px rgba(0,0,0,0.3), 0 3px 6px rgba(179,0,0,0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .pomegranate-icon::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 8px solid #b30000;
+        }
+
+        .pomegranate-icon::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: -2px;
+            width: 10px;
+            height: 6px;
+            background: linear-gradient(#2ec4b6, #11998e);
+            border-radius: 0 10px 0 10px;
+        }
+
+        .logo-text {
+            font-size: 26px;
+            font-weight: 800;
+            color: #b30000;
+            letter-spacing: -0.5px;
+        }
+
+        /* KATALOG DROPDOWN DIZAYNI */
+        .catalog-container {
+            position: relative;
+        }
+
+        .catalog-btn {
+            background-color: #b30000;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .catalog-btn:hover {
+            background-color: #990000;
+        }
+
+        .catalog-dropdown {
+            position: absolute;
+            top: 55px;
+            left: 0;
+            background-color: white;
+            min-width: 280px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-radius: 12px;
+            padding: 10px 0;
+            display: none;
+            z-index: 200;
+            border: 1px solid #e2e8f0;
+        }
+
+        @media (min-width: 769px) {
+            .catalog-container:hover .catalog-dropdown {
+                display: block;
+            }
+        }
+
+        .catalog-dropdown.active {
+            display: block !important;
+        }
+
+        .catalog-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #334155;
+            font-weight: 600;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        .catalog-item:hover {
+            background-color: #fff1f2;
+            color: #b30000;
+            padding-left: 25px;
+        }
+
+        /* Qidiruv paneli */
+        .search-container {
+            flex-grow: 1;
+            display: flex;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #cbd5e1;
+            border-radius: 10px 0 0 10px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #b30000;
+        }
+
+        .search-btn {
+            background-color: #b30000;
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 0 10px 10px 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Foydalanuvchi harakatlari */
+        .user-actions {
+            display: flex;
+            gap: 25px;
+        }
+
+        .action-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #334155;
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: #b30000;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 2px 6px;
+        }
+
+        /* Katta Banner */
+        .hero-banner {
+            margin: 30px 0;
+            background: linear-gradient(135deg, #ff4d4d 0%, #4a0011 100%);
+            border-radius: 20px;
+            padding: 60px;
+            color: white;
+            box-shadow: 0 6px 20px rgba(179,0,0,0.15);
+        }
+
+        .banner-text h2 {
+            font-size: 46px;
+            margin-bottom: 15px;
+            font-weight: 900;
+        }
+
+        .banner-text p {
+            font-size: 22px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .banner-btn {
+            background-color: white;
+            color: #4a0011;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* MAHSULOTLAR DIZAYNI */
+        .section-title {
+            font-size: 26px;
+            margin: 50px 0 25px 0;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 5px solid #b30000;
+            padding-left: 12px;
+            scroll-margin-top: 100px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: 0.3s ease;
+            position: relative;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        }
+
+        .product-img-box {
+            background-color: #f8fafc;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 65px;
+        }
+
+        .wishlist-heart {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #cbd5e1;
+            transition: color 0.2s;
+            user-select: none;
+            z-index: 10;
+        }
+
+        .wishlist-heart.active {
+            color: #e11d48;
+        }
+
+        .product-details {
+            padding: 20px;
+        }
+
+        .prod-title {
+            font-size: 15px;
+            color: #334155;
+            font-weight: 600;
+            margin-bottom: 8px;
+            height: 42px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .current-price {
+            font-size: 19px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .card-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .buy-btn {
+            flex: 2;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .buy-btn:hover {
+            background-color: #24A1DE;
+            color: white;
+        }
+
+        .add-cart-btn {
+            flex: 1;
+            background-color: #f1f5f9;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.2s;
+        }
+
+        /* --- MODAL OYNALAR --- */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .cart-modal.active {
+            display: flex !important;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 550px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #64748b;
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #0f172a;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        .cart-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .q-btn {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border: 1px solid #cbd5e1;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .q-btn.minus-btn {
+            background-color: #fee2e2;
+            color: #ef4444;
+            border-color: #fca5a5;
+        }
+
+        .total-price-box {
+            font-size: 18px;
+            font-weight: 800;
+            text-align: right;
+            margin-top: 15px;
+            color: #0f172a;
+            border-top: 2px solid #e2e8f0;
+            padding-top: 15px;
+        }
+
+        .telegram-order-btn {
+            display: block;
+            width: 100%;
+            background-color: #24A1DE;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* INFO TUGMASI USLUBI */
+        .info-order-btn {
+            display: block;
+            width: 100%;
+            background-color: #64748b;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .info-order-btn:hover {
+            background-color: #475569;
+        }
+
+        .info-box-text {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #334155;
+            display: none;
+        }
+
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            margin-top: 100px;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
+            100% { transform: translateY(0px); }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container top-bar-flex">
+            <div class="left-links" id="topCity">Shahar: <b>Jizzax</b> | Topshirish punktlari</div>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="switchLanguage('uz')">UZB</button>
+                <button class="lang-btn" onclick="switchLanguage('ru')">RUS</button>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="container header-flex">
+            
+            <a href="#" class="logo">
+                <span class="pomegranate-icon"></span>
+                <div class="logo-text">ANOR<span>MARKET</span></div>
+            </a>
+
+            <div class="catalog-container">
+                <button class="catalog-btn" id="catalogBtn">
+                    <span>☰</span> <span id="textCatalogBtn">Katalog</span>
+                </button>
+                <div class="catalog-dropdown" id="catalogDropdown">
+                    <a href="#chini" class="catalog-item" id="cat-1">🍽️ Chini buyumlar</a>
+                    <a href="#rozgor" class="catalog-item" id="cat-2">🏠 Ro'zg'or buyumlari</a>
+                    <a href="#produkta" class="catalog-item" id="cat-3">🍞 Mahsulotlar (Produkta)</a>
+                    <a href="#meva-sabzavot" class="catalog-item" id="cat-4">🍎 Mevalar va Sabzavotlar</a>
+                    <a href="#ichimliklar" class="catalog-item" id="cat-5">🥤 Ichimliklar</a>
+                    <a href="#shirinliklar" class="catalog-item" id="cat-6">🍬 Shirinliklar</a>
+                    <a href="#oyinchoqlar" class="catalog-item" id="cat-7">🧸 O'yinchoqlar</a>
+                    <a href="#shampunlar" class="catalog-item" id="cat-8">🧴 Shampun va Parvarish</a>
+                    <a href="#duxilar" class="catalog-item" id="cat-9">✨ Parfyumeriya (Duxilar)</a>
+                    <a href="#sovglar" class="catalog-item" id="cat-10">🎁 Sovg'alar bo'limi</a>
+                </div>
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Mahsulotlar va bo'limlarni qidirish...">
+                <button class="search-btn" id="searchBtn">Qidirish</button>
+            </div>
+
+            <div class="user-actions">
+                <div class="action-item" id="wishlistBtn">
+                    <span>❤️</span><span id="textWishBtn">Saralanganlar</span>
+                    <span class="badge" id="wishlistCount">0</span>
+                </div>
+                <div class="action-item" id="cartBtn">
+                    <span>🛒</span><span id="textCartBtn">Savatcha</span>
+                    <span class="badge" id="cartCount">0</span>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeCartModal">&times;</span>
+            <div class="modal-title" id="cartModalTitle">Sizning savatchangiz</div>
+            <div id="cartItemsList"></div>
+            <div class="total-price-box">
+                <span id="textTotalSum">Jami summa</span>: <span id="totalPriceSum">0</span> <span class="currencyText">so'm</span>
+            </div>
+            <button class="telegram-order-btn" id="sendTelegramBtn">Telegram orqali buyurtma berish</button>
+            
+            <button class="info-order-btn" id="infoOrderBtn" onclick="toggleInfoBox()">ℹ️ Buyurtma haqida ma'lumot</button>
+            <div class="info-box-text" id="infoBoxText">
+                <b>Yetkazib berish:</b> Jizzax shahri bo'ylab 24 soat ichida topshirish punktiga bepul yetkaziladi.<br>
+                <b>To'lov turi:</b> Mahsulotni qo'lingizga olgandan so'ng Naqd yoki Plastik karta orqali to'lov qilasiz.<br>
+                <b>Kafolat:</b> Mahsulotda nosozlik bo'lsa, 3 kun ichida qaytarib berish imkoniyati mavjud.
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-modal" id="wishlistModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeWishlistModal">&times;</span>
+            <div class="modal-title" id="wishlistModalTitle">❤️ Saralangan mahsulotlar</div>
+            <div id="wishlistItemsList"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hero-banner">
+            <div class="banner-text">
+                <h2 id="bannerTitle">ANOR MEGAMARKET!</h2>
+                <p id="bannerDesc">Katalog kompyuterda ustiga olib kelganda, telefonda esa bosganda ochiladi.</p>
+                <button class="banner-btn" id="bannerBtn">Xaridlarni boshlash</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="container" id="mainProductsContainer">
+
+        <h3 class="section-title" id="chini">🍽️ <span id="title-chini">Chini buyumlar</span></h3>
+        <div class="products-grid">
+            <div class="product-card" id="prod-1" data-title-uz="Elegant Oltin suvi yuritilgan Chini Choynak to'plami" data-title-ru="Элегантный фарфоровый чайный набор с позолотой" data-price="320000">
+                <span class="wishlist-heart" onclick="toggleWishlist('prod-1')">♥</span>
+                <div class="product-img-box">☕</div>
+                <div class="product-details">
+                    <p class="prod-title" id="p-title-1">Elegant Oltin suvi yuritilgan Chini Choynak to'plami</p>
+                    <div class="current-price">320 000 <span class="currencyText">so'm</span></div>
+                    <div class="card-buttons">
+                        <a href="https://t.me/+998934748691" target="_blank" class="buy-btn btnTelegramText">Telegram orqali sotib olish</a>
+                        <button class="add-cart-btn" onclick="triggerAddToCart('prod-1')">🛒</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-title" id="rozgor">🏠 <span id="title-rozgor">Ro'zg'or buyumlari</span></h3>
+        <div class="products-grid">
+            <div class="product-card" id="prod-2" data-title-uz="Smart-Aylantiruvchi chelak va pol-shvabra" data-title-ru="Умная швабра с отжимом и ведром" data-price="165000">
+                <span class="wishlist-heart" onclick="toggleWishlist('prod-2')">♥</span>
+                <div class="product-img-box">🧹</div>
+                <div class="product-details">
+                    <p class="prod-title" id="p-title-2">Smart-Aylantiruvchi chelak va pol-shvabra</p>
+                    <div class="current-price">165 000 <span class="currencyText">so'm</span></div>
+                    <div class="card-buttons">
+                        <a href="https://t.me/+998934748691" target="_blank" class="buy-btn btnTelegramText">Telegram orqali sotib olish</a>
+                        <button class="add-cart-btn" onclick="triggerAddToCart('prod-2')">🛒</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-title" id="produkta">🍞 <span id="title-produkta">Mahsulotlar (Produkta)</span></h3>
+        <div class="products-grid">
+            <div class="product-card" id="prod-3" data-title-uz="Gollandskiy pishlog'i - Tabiiy, 45%" data-title-ru="Сыр Голландский - Натуральный, 45%" data-price="45000">
+                <span class="wishlist-heart" onclick="toggleWishlist('prod-3')">♥</span>
+                <div class="product-img-box">🧀</div>
+                <div class="product-details">
+                    <p class="prod-title" id="p-title-3">Gollandskiy pishlog'i - Tabiiy, 45%</p>
+                    <div class="current-price">45 000 <span class="currencyText">so'm</span></div>
+                    <div class="card-buttons">
+                        <a href="https://t.me/+998934748691" target="_blank" class="buy-btn btnTelegramText">Telegram orqali sotib olish</a>
+                        <button class="add-cart-btn" onclick="triggerAddToCart('prod-3')">🛒</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ANOR MARKET.</p>
+    </footer>
+
+    <script>
+        // --- MULTI-LANGUAGE DICTIONARY ---
+        let currentLang = 'uz';
+        const langData = {
+            uz: {
+                city: "Shahar: <b>Jizzax</b> | Topshirish punktlari",
+                catalogBtn: "Katalog",
+                searchPlaceholder: "Mahsulotlar va bo'limlarni qidirish...",
+                searchBtn: "Qidirish",
+                wishBtn: "Saralanganlar",
+                cartBtn: "Savatcha",
+                currency: "so'm",
+                bannerTitle: "ANOR MEGAMARKET!",
+                bannerDesc: "Katalog kompyuterda ustiga olib kelganda, telefonda esa bosganda ochiladi.",
+                bannerBtn: "Xaridlarni boshlash",
+                cartTitle: "Sizning savatchangiz",
+                wishTitle: "❤️ Saralangan mahsulotlar",
+                totalSum: "Jami summa",
+                teleBtn: "Telegram orqali buyurtma berish",
+                buyBtnText: "Telegram orqali sotib olish",
+                emptyCart: "Savatchangiz hozircha bo'sh.",
+                emptyWish: "Saralangan mahsulotlar yo'q.",
+                infoBtn: "ℹ️ Buyurtma haqida ma'lumot",
+                infoBoxHtml: "<b>Yetkazib berish:</b> Jizzax shahri bo'ylab 24 soat ichida topshirish punktiga bepul yetkaziladi.<br><b>To'lov turi:</b> Mahsulotni qo'lingizga olgandan so'ng Naqd yoki Plastik karta orqali to'lov qilasiz.<br><b>Kafolat:</b> Mahsulotda nosozlik bo'lsa, 3 kun ichida qaytarib berish imkoniyati mavjud.",
+                cat1: "🍽️ Chini buyumlar", cat2: "🏠 Ro'zg'or buyumlari", cat3: "🍞 Mahsulotlar (Produkta)",
+                cat4: "🍎 Mevalar va Sabzavotlar", cat5: "🥤 Ichimliklar", cat6: "🍬 Shirinliklar",
+                cat7: "🧸 O'yinchoqlar", cat8: "🧴 Shampun va Parvarish", cat9: "✨ Parfyumeriya (Duxilar)",
+                cat10: "🎁 Sovg'alar bo'limi",
+                alertEmptyCart: "Savatchangiz bo'sh!",
+                tgOrderHeader: "Yangi Buyurtma:\n\n"
+            },
+            ru: {
+                city: "Город: <b>Джизак</b> | Пункты выдачи",
+                catalogBtn: "Каталог",
+                searchPlaceholder: "Поиск товаров и категорий...",
+                searchBtn: "Найти",
+                wishBtn: "Избранное",
+                cartBtn: "Корзина",
+                currency: "сум",
+                bannerTitle: "ANOR МЕГАМАРКЕТ!",
+                bannerDesc: "Каталог открывается при наведении на компьютере и при клике на телефоне.",
+                bannerBtn: "Начать покупки",
+                cartTitle: "Ваша корзина",
+                wishTitle: "❤️ Избранные товары",
+                totalSum: "Итоговая сумма",
+                teleBtn: "Оформить заказ через Telegram",
+                buyBtnText: "Купить через Telegram",
+                emptyCart: "Ваша корзина пока пуста.",
+                emptyWish: "Нет избранных товаров.",
+                infoBtn: "ℹ️ Информация о заказе",
+                infoBoxHtml: "<b>Доставка:</b> Бесплатная доставка в пункт выдачи по городу Джизак в течение 24 часов.<br><b>Тип оплаты:</b> Оплата наличными или картой после получения товара на руки.<br><b>Гарантия:</b> Возможность возврата в течение 3 дней в случае неисправности.",
+                cat1: "🍽️ Фарфоровая посуда", cat2: "🏠 Хозяйственные товары", cat3: "🍞 Продукты питания",
+                cat4: "🍎 Овощи и фрукты", cat5: "🥤 Напитки", cat6: "🍬 Сладости",
+                cat7: "🧸 Игрушки", cat8: "🧴 Шампуни и уход", cat9: "✨ Парфюмерия",
+                cat10: "🎁 Отдел подарков",
+                alertEmptyCart: "Ваша корзина пуста!",
+                tgOrderHeader: "Новый Заказ:\n\n"
+            }
+        };
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            if(event && event.target) {
+                event.target.classList.add('active');
+            }
+
+            document.getElementById('topCity').innerHTML = langData[lang].city;
+            document.getElementById('textCatalogBtn').innerText = langData[lang].catalogBtn;
+            document.getElementById('searchInput').placeholder = langData[lang].searchPlaceholder;
+            document.getElementById('searchBtn').innerText = langData[lang].searchBtn;
+            document.getElementById('textWishBtn').innerText = langData[lang].wishBtn;
+            document.getElementById('textCartBtn').innerText = langData[lang].cartBtn;
+            
+            document.getElementById('bannerTitle').innerText = langData[lang].bannerTitle;
+            document.getElementById('bannerDesc').innerText = langData[lang].bannerDesc;
+            document.getElementById('bannerBtn').innerText = langData[lang].bannerBtn;
+
+            document.getElementById('title-chini').innerText = langData[lang].cat1;
+            document.getElementById('title-rozgor').innerText = langData[lang].cat2;
+            document.getElementById('title-produkta').innerText = langData[lang].cat3;
+
+            document.getElementById('cat-1').innerText = langData[lang].cat1;
+            document.getElementById('cat-2').innerText = langData[lang].cat2;
+            document.getElementById('cat-3').innerText = langData[lang].cat3;
+            document.getElementById('cat-4').innerText = langData[lang].cat4;
+            document.getElementById('cat-5').innerText = langData[lang].cat5;
+            document.getElementById('cat-6').innerText = langData[lang].cat6;
+            document.getElementById('cat-7').innerText = langData[lang].cat7;
+            document.getElementById('cat-8').innerText = langData[lang].cat8;
+            document.getElementById('cat-9').innerText = langData[lang].cat9;
+            document.getElementById('cat-10').innerText = langData[lang].cat10;
+
+            document.getElementById('cartModalTitle').innerText = langData[lang].cartTitle;
+            document.getElementById('wishlistModalTitle').innerText = langData[lang].wishTitle;
+            document.getElementById('textTotalSum').innerText = langData[lang].totalSum;
+            document.getElementById('sendTelegramBtn').innerText = langData[lang].teleBtn;
+            
+            document.getElementById('infoOrderBtn').innerText = langData[lang].infoBtn;
+            document.getElementById('infoBoxText').innerHTML = langData[lang].infoBoxHtml;
+
+            document.querySelectorAll('.currencyText').forEach(el => el.innerText = langData[lang].currency);
+            document.querySelectorAll('.btnTelegramText').forEach(el => el.innerText = langData[lang].buyBtnText);
+
+            document.getElementById('p-title-1').innerText = document.getElementById('prod-1').getAttribute('data-title-' + lang);
+            document.getElementById('p-title-2').innerText = document.getElementById('prod-2').getAttribute('data-title-' + lang);
+            document.getElementById('p-title-3').innerText = document.getElementById('prod-3').getAttribute('data-title-' + lang);
+
+            updateCartUI();
+            updateWishlistUI();
+        }
+
+        // --- MUKAMMAL QIDIRUV FUNKSIYASI (YANGI QO'SHILDI) ---
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+
+        function performSearch() {
+            const query = searchInput.value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.product-card');
+            const titles = document.querySelectorAll('.section-title');
+
+            cards.forEach(card => {
+                const titleUz = card.getAttribute('data-title-uz').toLowerCase();
+                const titleRu = card.getAttribute('data-title-ru').toLowerCase();
+                
+                // Agar qidiruv maydoni bo'sh bo'lsa yoki mahsulot nomi mos kelsa, ko'rsatiladi
+                if (query === "" || titleUz.includes(query) || titleRu.includes(query)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            // Bo'lim sarlavhalarini tekshirish (ichida birorta ko'rinadigan mahsulot bormi)
+            titles.forEach(title => {
+                const grid = title.nextElementSibling;
+                if(grid && grid.classList.contains('products-grid')) {
+                    const visibleCards = grid.querySelectorAll('.product-card[style="display: flex;"]');
+                    const titleText = title.innerText.toLowerCase();
+                    
+                    // Sarlavha matni qidiruvga to'g'ri kelsa yoki ichida mahsulot qolgan bo'lsa ko'rinadi
+                    if (query === "" || titleText.includes(query) || visibleCards.length > 0) {
+                        title.style.display = "flex";
+                        grid.style.display = "grid";
+                        // Sarlavha mos kelganda ichidagi barcha mahsulotlarni ochish
+                        if(titleText.includes(query) && query !== "") {
+                            grid.querySelectorAll('.product-card').forEach(c => c.style.display = "flex");
+                        }
+                    } else {
+                        title.style.display = "none";
+                        grid.style.display = "none";
+                    }
+                }
+            });
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // --- MA'LUMOT OYNASINI OCHIB YOPISH ---
+        function toggleInfoBox() {
+            const infoBox = document.getElementById('infoBoxText');
+            if(infoBox.style.display === 'block') {
+                infoBox.style.display = 'none';
+            } else {
+                infoBox.style.display = 'block';
+            }
+        }
+
+        // --- KATALOG MENU ---
+        const catalogBtn = document.getElementById('catalogBtn');
+        const catalogDropdown = document.getElementById('catalogDropdown');
+        catalogBtn.addEventListener('click', (e) => {
+            catalogDropdown.classList.toggle('active');
+            e.stopPropagation();
+        });
+        document.addEventListener('click', () => catalogDropdown.classList.remove('active'));
+
+        // --- KORZINKA VA SEVIMLILAR LOGIKASI ---
+        let cart = {}; 
+        let wishlist = {}; 
+
+        function triggerAddToCart(id) {
+            const card = document.getElementById(id);
+            const titleUZ = card.getAttribute('data-title-uz');
+            const titleRU = card.getAttribute('data-title-ru');
+            const price = parseInt(card.getAttribute('data-price'), 10);
+
+            if (cart[id]) {
+                cart[id].quantity += 1;
+            } else {
+                cart[id] = { titleUz: titleUZ, titleRu: titleRU, price: price, quantity: 1 };
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(id) {
+            delete cart[id];
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const listEl = document.getElementById('cartItemsList');
+            listEl.innerHTML = '';
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            for (let id in cart) {
+                totalItems += cart[id].quantity;
+                let itemTotal = cart[id].price * cart[id].quantity;
+                totalPrice += itemTotal;
+
+                let title = currentLang === 'uz' ? cart[id].titleUz : cart[id].titleRu;
+
+                const row = document.createElement('div');
+                row.className = 'cart-item-row';
+                row.innerHTML = `
+                    <div>
+                        <b style="font-size:14px;">${title}</b><br>
+                        <small style="color:#64748b;">${cart[id].price.toLocaleString()} ${langData[currentLang].currency} x ${cart[id].quantity}</small>
+                    </div>
+                    <div class="quantity-controls">
+                        <button class="q-btn minus-btn" onclick="removeFromCart('${id}')">🗑️</button>
+                    </div>
+                `;
+                listEl.appendChild(row);
+            }
+
+            document.getElementById('cartCount').innerText = totalItems;
+            document.getElementById('totalPriceSum').innerText = totalPrice.toLocaleString();
+
+            if (totalItems === 0) {
+                listEl.innerHTML = `<p style="text-align:center;color:#64748b;padding:15px;">${langData[currentLang].emptyCart}</p>`;
+            }
+        }
+
+        function toggleWishlist(id) {
+            const card = document.getElementById(id);
+            const heart = card.querySelector('.wishlist-heart');
+            heart.classList.toggle('active');
+
+            if (heart.classList.contains('active')) {
+                wishlist[id] = true;
+            } else {
+                delete wishlist[id];
+            }
+            updateWishlistUI();
+        }
+
+        function updateWishlistUI() {
+            const listEl = document.getElementById('wishlistItemsList');
+            listEl.innerHTML = '';
+            let keys = Object.keys(wishlist);
+            document.getElementById('wishlistCount').innerText = keys.length;
+
+            keys.forEach(id => {
+                const card = document.getElementById(id);
+                const title = currentLang === 'uz' ? card.getAttribute('data-title-uz') : card.getAttribute('data-title-ru');
+                const price = parseInt(card.getAttribute('data-price'), 10);
+
+                const row = document.createElement('div');
+                row.className = 'cart-item-row';
+                row.innerHTML = `
+                    <div>
+                        <b style="font-size:14px;">${title}</b><br>
+                        <small style="color:#64748b;">${price.toLocaleString()} ${langData[currentLang].currency}</small>
+                    </div>
+                    <div class="quantity-controls">
+                        <button class="q-btn" style="background-color:#22c55e;color:white;border:none;" onclick="triggerAddToCart('${id}'); toggleWishlist('${id}')">🛒</button>
+                        <button class="q-btn minus-btn" onclick="toggleWishlist('${id}')">❌</button>
+                    </div>
+                `;
+                listEl.appendChild(row);
+            });
+
+            if (keys.length === 0) {
+                listEl.innerHTML = `<p style="text-align:center;color:#64748b;padding:15px;">${langData[currentLang].emptyWish}</p>`;
+            }
+        }
+
+        // --- MODAL INTERFEYSI ---
+        const cartModal = document.getElementById('cartModal');
+        const wishlistModal = document.getElementById('wishlistModal');
+
+        document.getElementById('cartBtn').addEventListener('click', () => cartModal.classList.add('active'));
+        document.getElementById('closeCartModal').addEventListener('click', () => {
+            cartModal.classList.remove('active');
+            document.getElementById('infoBoxText').style.display = 'none';
+        });
+
+        document.getElementById('wishlistBtn').addEventListener('click', () => wishlistModal.classList.add('active'));
+        document.getElementById('closeWishlistModal').addEventListener('click', () => wishlistModal.classList.remove('active'));
+
+        window.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.classList.remove('active');
+                document.getElementById('infoBoxText').style.display = 'none';
+            }
+            if (e.target === wishlistModal) wishlistModal.classList.remove('active');
+        });
+
+        // Telegram zakaz yuborish
+        document.getElementById('sendTelegramBtn').addEventListener('click', function() {
+            if (Object.keys(cart).length === 0) { alert(langData[currentLang].alertEmptyCart); return; }
+            let msg = langData[currentLang].tgOrderHeader;
+            let index = 1; let total = 0;
+            for (let id in cart) {
+                let title = currentLang === 'uz' ? cart[id].titleUz : cart[id].titleRu;
+                let cost = cart[id].price * cart[id].quantity;
+                total += cost;
+                msg += `${index}. ${title} (${cart[id].quantity} ta/шт) — ${cost.toLocaleString()} ${langData[currentLang].currency}\n`;
+                index++;
+            }
+            msg += `\n💵 Jami/Итого: ${total.toLocaleString()} ${langData[currentLang].currency}`;
+            window.open(`https://t.me/+998934748691?text=${encodeURIComponent(msg)}`, '_blank');
+        });
+    </script>
+</body>
+</html>
